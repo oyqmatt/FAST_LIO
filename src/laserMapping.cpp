@@ -929,8 +929,8 @@ public:
         pubLaserCloudFull_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/cloud_registered", 20);
         pubLaserCloudFull_body_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/cloud_registered_body", 20);
         pubLaserCloudEffect_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/cloud_effected", 20);
-        pubLaserCloudMap_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/Laser_map", 20);
-        pubOdomAftMapped_ = this->create_publisher<nav_msgs::msg::Odometry>("/Odometry", 20);
+        pubLaserCloudMap_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/laser_map", 20);
+        pubOdomAftMapped_ = this->create_publisher<nav_msgs::msg::Odometry>("/odom", 20);
         pubPath_ = this->create_publisher<nav_msgs::msg::Path>("/path", 20);
         tf_broadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(*this);
 
@@ -1111,7 +1111,7 @@ private:
         if (map_pub_en) publish_map(pubLaserCloudMap_);
     }
 
-    void map_save_callback(std_srvs::srv::Trigger::Request::ConstSharedPtr req, std_srvs::srv::Trigger::Response::SharedPtr res)
+    void map_save_callback(std_srvs::srv::Trigger::Request::SharedPtr, std_srvs::srv::Trigger::Response::SharedPtr res)
     {
         RCLCPP_INFO(this->get_logger(), "Saving map to %s...", map_file_path.c_str());
         if (pcd_save_en)

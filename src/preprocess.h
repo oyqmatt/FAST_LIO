@@ -80,7 +80,7 @@ struct EIGEN_ALIGN16 Point
 }  // namespace velodyne_ros
 POINT_CLOUD_REGISTER_POINT_STRUCT(velodyne_ros::Point,
                                   (float, x, x)(float, y, y)(float, z, z)(float, intensity,
-                                                                          intensity)(float, time, time)(uint16_t, ring,
+                                                                          intensity)(float, time, time)(std::uint16_t, ring,
                                                                                                         ring))
 
 namespace ouster_ros
@@ -128,8 +128,8 @@ POINT_CLOUD_REGISTER_POINT_STRUCT(livox_ros::LivoxPointXyzrtl,
     (float, y, y)
     (float, z, z)
     (float, reflectivity, reflectivity)
-    (uint8_t, tag, tag)
-    (uint8_t, line, line)
+    (std::uint8_t, tag, tag)
+    (std::uint8_t, line, line)
 )
 
 class Preprocess
